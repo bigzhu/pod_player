@@ -69,8 +69,7 @@ class PodGetXVideoController extends _PodGesturesController {
 
       update(['update-all']);
       // ignore: unawaited_futures
-      Future<void>.delayed(const Duration(milliseconds: 600))
-          .then((_) => _isWebAutoPlayDone = true);
+      Future<void>.delayed(const Duration(milliseconds: 600)).then((_) => _isWebAutoPlayDone = true);
     } catch (e) {
       podVideoStateChanger(PodVideoState.error);
       update(['errorState']);
@@ -223,8 +222,7 @@ class PodGetXVideoController extends _PodGesturesController {
         onRightDoubleTap();
         return;
       }
-      if (event.isKeyPressed(LogicalKeyboardKey.keyF) &&
-          event.logicalKey.keyLabel == 'F') {
+      if (event.isKeyPressed(LogicalKeyboardKey.keyF) && event.logicalKey.keyLabel == 'F') {
         toggleFullScreenOnWeb(appContext, tag);
       }
       if (event.isKeyPressed(LogicalKeyboardKey.escape)) {
@@ -277,7 +275,9 @@ class PodGetXVideoController extends _PodGesturesController {
   ///checkes wether video should be `autoplayed` initially
   void checkAutoPlayVideo() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      if (autoPlay && (isVideoUiBinded ?? false)) {
+      // 一些奇怪的图片资源加载异常, 都会导致 isVideoUiBinded 不成功, 这里不再检查, 直接自动播放
+      // if (autoPlay && (isVideoUiBinded ?? false)) {
+      if (autoPlay) {
         if (kIsWeb) await _videoCtr?.setVolume(0);
         podVideoStateChanger(PodVideoState.playing);
       } else {
