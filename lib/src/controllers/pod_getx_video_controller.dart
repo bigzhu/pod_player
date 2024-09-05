@@ -69,7 +69,8 @@ class PodGetXVideoController extends _PodGesturesController {
 
       update(['update-all']);
       // ignore: unawaited_futures
-      Future<void>.delayed(const Duration(milliseconds: 600)).then((_) => _isWebAutoPlayDone = true);
+      Future<void>.delayed(const Duration(milliseconds: 600))
+          .then((_) => _isWebAutoPlayDone = true);
     } catch (e) {
       podVideoStateChanger(PodVideoState.error);
       update(['errorState']);
@@ -92,7 +93,6 @@ class PodGetXVideoController extends _PodGesturesController {
           httpHeaders: playVideoFrom.httpHeaders,
         );
         playingVideoUrl = playVideoFrom.dataSource;
-        break;
       case PodVideoPlayerType.networkQualityUrls:
         final url = await getUrlFromVideoQualityUrls(
           qualityList: podPlayerConfig.videoQualityPriority,
@@ -109,7 +109,6 @@ class PodGetXVideoController extends _PodGesturesController {
         );
         playingVideoUrl = url;
 
-        break;
       case PodVideoPlayerType.youtube:
         final urls = await getVideoQualityUrlsFromYoutube(
           playVideoFrom.dataSource!,
@@ -130,7 +129,6 @@ class PodGetXVideoController extends _PodGesturesController {
         );
         playingVideoUrl = url;
 
-        break;
       case PodVideoPlayerType.vimeo:
         await getQualityUrlsFromVimeoId(
           playVideoFrom.dataSource!,
@@ -150,7 +148,6 @@ class PodGetXVideoController extends _PodGesturesController {
         );
         playingVideoUrl = url;
 
-        break;
       case PodVideoPlayerType.asset:
 
         ///
@@ -162,7 +159,6 @@ class PodGetXVideoController extends _PodGesturesController {
         );
         playingVideoUrl = playVideoFrom.dataSource;
 
-        break;
       case PodVideoPlayerType.file:
         if (kIsWeb) {
           throw Exception('file doesnt support web');
@@ -175,7 +171,6 @@ class PodGetXVideoController extends _PodGesturesController {
           videoPlayerOptions: playVideoFrom.videoPlayerOptions,
         );
 
-        break;
       case PodVideoPlayerType.vimeoPrivateVideos:
         await getQualityUrlsFromVimeoPrivateId(
           playVideoFrom.dataSource!,
@@ -222,7 +217,8 @@ class PodGetXVideoController extends _PodGesturesController {
         onRightDoubleTap();
         return;
       }
-      if (event.isKeyPressed(LogicalKeyboardKey.keyF) && event.logicalKey.keyLabel == 'F') {
+      if (event.isKeyPressed(LogicalKeyboardKey.keyF) &&
+          event.logicalKey.keyLabel == 'F') {
         toggleFullScreenOnWeb(appContext, tag);
       }
       if (event.isKeyPressed(LogicalKeyboardKey.escape)) {

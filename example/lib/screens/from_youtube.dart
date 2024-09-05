@@ -39,7 +39,7 @@ class _PlayVideoFromVimeoIdState extends State<PlayVideoFromYoutube> {
             shrinkWrap: true,
             children: [
               PodVideoPlayer(
-                podProgressBarConfig: PodProgressBarConfig(),
+                podProgressBarConfig: const PodProgressBarConfig(),
                 controller: controller,
                 videoThumbnail: const DecorationImage(
                   image: NetworkImage(
