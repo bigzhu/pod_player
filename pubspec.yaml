@@ -17,6 +17,7 @@ dependencies:
   wakelock_plus:
   universal_html:
   youtube_explode_dart:
+    path: ../youtube_explode_dart/
 
 dev_dependencies:
   flutter_test:
