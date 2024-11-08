@@ -11,18 +11,18 @@ dependencies:
   flutter:
     sdk: flutter
   # services
-  video_player:
-  http:
-  get:
-  wakelock_plus:
-  universal_html:
+  video_player: 2.9.2
+  http: 1.2.2
+  get: 4.6.6
+  wakelock_plus: 1.2.8
+  universal_html: 2.2.4
   youtube_explode_dart:
     path: ../youtube_explode_dart/
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis:
+  very_good_analysis: 6.0.0
 
 screenshots:
   - description: Pod video player logo
