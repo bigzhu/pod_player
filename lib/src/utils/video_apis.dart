@@ -139,7 +139,14 @@ class VideoApis {
         );
       } else {
         final manifest =
-            await yt.videos.streamsClient.getManifest(youtubeIdOrUrl);
+            await yt.videos.streamsClient.getManifest(youtubeIdOrUrl,
+            // 限定只使用 safari 来获取视频链接
+            ytClients: [
+              YoutubeApiClient.safari,
+              // YoutubeApiClient.androidVr,
+              // YoutubeApiClient.ios,
+            ]
+            );
         urls.addAll(
           manifest.muxed.map(
             (element) => VideoQalityUrls(
@@ -148,6 +155,7 @@ class VideoApis {
             ),
           ),
         );
+        print('urls: $urls');
       }
       // Close the YoutubeExplode's http client.
       yt.close();
