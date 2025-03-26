@@ -139,16 +139,10 @@ class VideoApis {
         );
       } else {
         final manifest =
-            await yt.videos.streamsClient.getManifest(youtubeIdOrUrl,
-            // 限定只使用 safari 来获取视频链接
-            ytClients: [
-              YoutubeApiClient.safari,
-              // YoutubeApiClient.androidVr,
-              // YoutubeApiClient.ios,
-            ]
-            );
+            await yt.videos.streamsClient.getManifest(youtubeIdOrUrl);
+        final bestQuality = manifest.muxed.bestQuality;
         urls.addAll(
-          manifest.muxed.map(
+          [bestQuality].map(
             (element) => VideoQalityUrls(
               quality: int.parse(element.qualityLabel.split('p')[0]),
               url: element.url.toString(),
